@@ -11,7 +11,7 @@ Recommendations:
 1) Ubuntu 18.04 LTS 64bit is recommended Linux version (I personally prefer Mate version)
 2) 8Gb of RAM are enough for building Android 9 and 10
 3) 16Gb are recommended for Android 11
-4) 14Gb are actually enough, if you use VM, your host has exactly 16Gb and would hang in case of using them all 
+4) 14Gb are actually enough, if you use VM, your host has exactly 16Gb and would hang in case of allocating them all 
 
 Instruction:
 1) Provide enough space for sources (~100Gb per branch), OpenGApps (~20Gb per branch), building (~100Gb per target, can be on separate drive)
