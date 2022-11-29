@@ -14,7 +14,7 @@ Recommendations:
 4) 14Gb are actually enough, if you use VM, your host has exactly 16Gb and would hang in case of using them all 
 
 Instruction:
-1) Provide enough space for sources (~100G per branch), OpenGApps (~20G per branch), building (~100G per target, can be on separate drive)
+1) Provide enough space for sources (~100Gb per branch), OpenGApps (~20Gb per branch), building (~100Gb per target, can be on separate drive)
 2) Put scripts to your source directory
 3) Edit config.sh
 4) Run prepare.sh
