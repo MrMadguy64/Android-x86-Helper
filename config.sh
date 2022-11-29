@@ -49,7 +49,7 @@ src_pwd="12345"
 export_dir="../export"
 #Enable swap: "no" to disable, "yes" for live session
 swap="yes"
-#Total swap size in gigabytes
+#Total swap size in gigabytes (16Gb physical memory is recommened for Android 11, succeeded with 14Gb) 
 swap_size=8
 #[Unused, should be 0] Amount of swap in gigabytes to be used to expand tmp file system
 ramdisk_size=0
