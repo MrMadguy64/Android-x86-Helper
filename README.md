@@ -17,9 +17,9 @@ Instruction:
 1) Provide enough space for sources (~100Gb per branch), OpenGApps (~20Gb per branch), building (~100Gb per target, can be on separate drive)
 2) Put scripts to your source directory
 3) Edit config.sh
-4) Run prepare.sh
-5) Run sync.sh
-6) Run build.sh
+4) Run prepare.sh (1-2 minutes)
+5) Run sync.sh (1-2 hours)
+6) Run build.sh (several hours)
 
 Known issues:
 1) Android 10 still can't be built due to source code problems. I don't want to take responsibilty and fix them.
