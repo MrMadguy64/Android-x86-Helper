@@ -20,5 +20,4 @@ Instruction:
 
 Known issues:
 1) Android 10 still can't be built due to source code problems. I don't want to take responsibilty and fix them.
-2) OpenGApps still doesn't work despite of all patches applied.
-3) Some cases aren't tested, like removing out dir
+2) Some cases aren't tested, like removing out dir
