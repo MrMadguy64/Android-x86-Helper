@@ -88,7 +88,7 @@ do
 			#Patches to fix OpenGApps build problems
 			echo '$(call add-clean-step, rm -rf $(PRODUCT_OUT)/system/priv-app/*)' > vendor/opengapps/build/CleanSpec.mk
 			echo '$(call add-clean-step, rm -rf $(PRODUCT_OUT)/system/app/*)' >> vendor/opengapps/build/CleanSpec.mk
-			echo 'include $(call all-named-subdir-makefiles,$(GAPPS_PRODUCT_PACKAGES))' >> vendor/opengapps/build/modules/ActionsServices/Android.mk
+			echo 'include $(call all-named-subdir-makefiles,$(GAPPS_PRODUCT_PACKAGES))' > vendor/opengapps/build/modules/Android.mk
 			sed -i '/MarkupGoogle/d' vendor/opengapps/build/opengapps-packages.mk
 			sed -i '/GoogleCamera/d' vendor/opengapps/build/opengapps-packages.mk
 		fi
