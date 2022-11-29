@@ -89,8 +89,8 @@ do
 			echo '$(call add-clean-step, rm -rf $(PRODUCT_OUT)/system/priv-app/*)' > vendor/opengapps/build/CleanSpec.mk
 			echo '$(call add-clean-step, rm -rf $(PRODUCT_OUT)/system/app/*)' >> vendor/opengapps/build/CleanSpec.mk
 			echo 'include $(call all-named-subdir-makefiles,$(GAPPS_PRODUCT_PACKAGES))' >> vendor/opengapps/build/modules/ActionsServices/Android.mk
-			sed -i '/MarkupGoogle \\\n/d' vendor/opengapps/build/opengapps-packages.mk
-			sed -i '/GoogleCamera \\\n/d' vendor/opengapps/build/opengapps-packages.mk
+			sed -i '/MarkupGoogle/d' vendor/opengapps/build/opengapps-packages.mk
+			sed -i '/GoogleCamera/d' vendor/opengapps/build/opengapps-packages.mk
 		fi
 		
 		#Download OpenGApps files via lfs
