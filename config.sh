@@ -17,7 +17,7 @@ kernel="defconfig"
 #Number of CPUs for Make
 cpus="4"
 #OpenGApps variant: "no" to disable, otherwise - value for GAPPS_VARIANT
-opengapps="pico"
+opengapps="no"
 #OpenGApps packages: "no" to disable, otherwise - value for GAPPS_PRODUCT_PACKAGES
 packages="no"
 #OpenGApps browser: "no" to disable, "yes" to set GAPPS_FORCE_BROWSER_OVERRIDES := true
