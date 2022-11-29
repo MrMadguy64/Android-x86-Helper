@@ -23,7 +23,7 @@ packages="no"
 #OpenGApps browser: "no" to disable, "yes" to set GAPPS_FORCE_BROWSER_OVERRIDES := true
 override_browser="yes"
 #OpenGApps WebView: "no" to disable, "yes" to set GAPPS_FORCE_WEBVIEW_OVERRIDES := true
-override_webview="no"
+override_webview="yes"
 #Make call style: "old" for using buildspec.mk, "new" for using lunch
 make_style="new"
 #Override OUT_DIR variable: "no" to disable, anything else to enable (relative paths are allowed)
