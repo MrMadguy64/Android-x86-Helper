@@ -21,6 +21,8 @@ Instruction:
 5) Run sync.sh (1-2 hours)
 6) Run build.sh (several hours)
 
+Scripts can be interrupted at any moment and continue from exactly the same stage, except small overhead to refresh current state (2-5 minutes). Just don't remove ISO files from export directory before completing build process. Especially if you remove out directories to free disk space. They're used to detect, what tasks are already completed.
+
 Known issues:
 1) Android 10 still can't be built due to source code problems. I don't want to take responsibilty and fix them.
 2) Some cases aren't tested, like removing out dir
