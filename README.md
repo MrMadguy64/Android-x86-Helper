@@ -18,8 +18,8 @@ Instruction:
 2) Put scripts to your source directory
 3) Edit config.sh
 4) Run prepare.sh (1-2 minutes)
-5) Run sync.sh (1-2 hours)
-6) Run build.sh (several hours)
+5) Run sync.sh (1-2 hours per branch)
+6) Run build.sh (several hours per target)
 
 Scripts can be interrupted at any moment and continue from exactly the same stage, except small overhead to refresh current state (2-5 minutes). Just don't remove ISO files from export directory before completing build process. Especially if you remove out directories to free disk space. They're used to detect, what tasks are already completed.
 
