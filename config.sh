@@ -17,7 +17,7 @@ kernel="defconfig"
 #Number of CPUs for Make
 cpus="4"
 #OpenGApps variant: "no" to disable, otherwise - value for GAPPS_VARIANT
-opengapps="no"
+opengapps="pico"
 #OpenGApps packages: "no" to disable, otherwise - value for GAPPS_PRODUCT_PACKAGES
 packages="no"
 #OpenGApps browser: "no" to disable, "yes" to set GAPPS_FORCE_BROWSER_OVERRIDES := true
@@ -57,7 +57,7 @@ ramdisk_size=0
 #***Misc settings***
 
 #Override resync query behavior: "no" - ask, "yes" - override
-override_sync="no"
+override_sync="yes"
 #[Untested] Remove out dir after every branch: "ask" - show query, "no" - keep it, "yes" - remove
 clean_branch="no"
 #[Untested] Remove out dir after every arch: "ask" - show query, "no" - keep it, "yes" - remove

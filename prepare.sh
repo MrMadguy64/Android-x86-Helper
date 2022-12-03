@@ -2,9 +2,6 @@
 
 . ./config.sh
 
-#I like to use htop to monitor system resources
-mate-terminal -e htop &
-
 #Make swap file
 if [ $swap = "yes" ]
 then

@@ -1,9 +1,7 @@
 #!/bin/bash
 
 . ./config.sh
-
-#I like to use htop to monitor system resources
-mate-terminal -e htop &
+. ./tools.sh
 
 #It's separate script, so set this varaibles again
 case $dest_type in
@@ -56,6 +54,12 @@ do
 		
 		if [ ! -f $dest_name ]
 		then        		
+			#Backup sandbox_linux.go
+			check_backup build/soong/ui/build/sandbox_linux.go
+			#Backup config.go
+			check_backup build/soong/ui/build/paths/config.go
+			#Backup kernel.mk
+			check_backup device/generic/common/build/tasks/kernel.mk
 			#Choose make style
 			case $make_style in
 				"old")
@@ -65,16 +69,12 @@ do
 					echo TARGET_BUILD_TYPE := $build >> buildspec.mk
 					echo TARGET_KERNEL_CONFIG := android-${arch_vers}_${kernel} >> buildspec.mk
 					#Disable sandboxing in case of problems with nsjail
-					case $disable_sandbox in
-						"yes")
-							sed -i 's#if !c.Sandbox.Enabled {#return false\n\tif true {#g' build/soong/ui/build/sandbox_linux.go
-						;;
-						"no")
-							sed -i 's#return false\n\tif true {#if !c.Sandbox.Enabled {#g' build/soong/ui/build/sandbox_linux.go
-						;;
-					esac
+					if [ $disable_sandbox = "yes" ]
+					then
+						sed -i 's#if !c.Sandbox.Enabled {#return false\n\tif true {#g' build/soong/ui/build/sandbox_linux.go
+					fi
 					#Kernel: depmod patch for Android 10 kernel
-					sed -i 's#"dd":       Allowed,#"dd":Allowed,\n\t"depmod":Allowed,#g' build/soong/ui/build/paths/config.go
+					sed -i 's#"dd":       Allowed,#"dd":       Allowed,\n\t"depmod"    :Allowed,#g' build/soong/ui/build/paths/config.go
 					#Kernel: bison/ld patch in case of using OUT_DIR or OUT_DIR_COMMON_BASE					
 					sed -i 's#ln -sf ../../../../../../prebuilts#ln -sf $(abspath ./prebuilts)#g' device/generic/common/build/tasks/kernel.mk
 					sed -i 's#ln -sf ../../$(LLVM_PREBUILTS_PATH)/llvm-ar#ln -sf $(abspath ./$(LLVM_PREBUILTS_PATH)/llvm-ar)#g' device/generic/common/build/tasks/kernel.mk
@@ -84,21 +84,20 @@ do
 					make -j$cpus iso_img
 				;;
 				"new")
+					#Remove buildspec.mk, if exists
+					rm -f buildspec.mk
 					#Use envsetup.sh, lunch and m - recommended
 					. build/envsetup.sh
 					export TARGET_KERNEL_CONFIG=android-${arch_vers}_${kernel}
 					#Disable sandboxing in case of problems with nsjail
-					case $disable_sandbox in
-						"yes")
-							sed -i 's#if !c.Sandbox.Enabled {#return false\n\tif true {#g' build/soong/ui/build/sandbox_linux.go
-						;;
-						"no")
-							sed -i 's#return false\n\tif true {#if !c.Sandbox.Enabled {#g' build/soong/ui/build/sandbox_linux.go
-						;;
-					esac
+					if [ $disable_sandbox = "yes" ]
+					then
+						sed -i 's#if !c.Sandbox.Enabled {#return false\n\tif true {#g' build/soong/ui/build/sandbox_linux.go
+					fi
+					#Configure build environment
 					lunch $arch_name-$target
 					#Kernel: depmod patch for Android 10 kernel
-					sed -i 's#"dd":       Allowed,#"dd":Allowed,\n\t"depmod":Allowed,#g' build/soong/ui/build/paths/config.go
+					sed -i 's#"dd":       Allowed,#"dd":       Allowed,\n\t"depmod"    :Allowed,#g' build/soong/ui/build/paths/config.go
 					#Kernel: bison/ld patch in case of using OUT_DIR or OUT_DIR_COMMON_BASE	
 					sed -i 's#ln -sf ../../../../../../prebuilts#ln -sf $(abspath ./prebuilts)#g' device/generic/common/build/tasks/kernel.mk
 					sed -i 's#ln -sf ../../$(LLVM_PREBUILTS_PATH)/llvm-ar#ln -sf $(abspath ./$(LLVM_PREBUILTS_PATH)/llvm-ar)#g' device/generic/common/build/tasks/kernel.mk
@@ -113,58 +112,12 @@ do
 			cp -f $full_out/target/product/$arch_vers/$arch_name.iso $dest_name
 			
 			#Remove out dir, if you don't have enough space to keep it (~100G per target)
-			case $clean_arch in
-				"yes")
-					#Always remove (unrecommended, if you aren't 100% sure, that build will succeed)
-					temp=$PWD
-					cd $real_out
-					rm -rf $real_suffix
-					cd $temp
-				;;
-				"ask")
-					#Ask (recommended)
-					read -p "Do you want to clean out directory? [y/n]" yn
-					case $yn in
-						"y")
-							temp=$PWD
-							cd $real_out
-							rm -rf $real_suffix
-							cd $temp
-						;;
-						"n")
-							exit
-						;;
-					esac
-				;;
-			esac
+			clean_out $clean_arch $real_out $real_suffix
 		fi
 	done
 
 	#Remove out dir, if you don't have enough space to keep it (~100G per target)	
-	case $clean_branch in
-		"yes")
-			#Always remove (unrecommended, if you aren't 100% sure, that build will succeed)
-			temp=$PWD
-			cd $real_out
-			rm -rf $real_suffix
-			cd $temp
-		;;
-		"ask")
-			#Ask (recommended)
-			read -p "Do you want to clean out directory? [y/n]" yn
-			case $yn in
-				"y")
-					temp=$PWD
-					cd $real_out
-					rm -rf $real_suffix
-					cd $temp
-				;;
-				"n")
-					exit
-				;;
-			esac
-		;;
-	esac
+	clean_out $clean_branch $real_out $real_suffix
 	
 	#Leave branch source directory
 	cd ..
