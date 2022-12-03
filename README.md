@@ -3,7 +3,7 @@ Helper scripts for building Android-x86
 
 These scripts allow fully automated Android-x86 project building and contain some patches for common problems, found around internet.
 
-Please note: I'm experienced programmer, but I'm new to Linux and bash, so there can be better solutions for some tasks, like detecting already applied patches, patching files and allowing patch reverting in case of config changes. For now config changes aren't supported. I.e. you should set your config in stone before doing anything else.
+Please note: I'm experienced programmer, but I'm new to Linux and bash, so there can be better solutions for some tasks, like detecting already applied patches, patching files and allowing patch reverting in case of config changes. For now config changes are experimental. I.e. you should set your config in stone before doing anything else.
 
 Scripts aim at building on virtual machine or live session. Builing on real system is possible, but not recommended.
 
@@ -21,7 +21,9 @@ Instruction:
 5) Run sync.sh (1-2 hours per branch)
 6) Run build.sh (several hours per target)
 
-Scripts can be interrupted at any moment and continue from exactly the same stage, except small overhead to refresh current state (2-5 minutes). Just don't remove ISO files from export directory before completing build process. Especially if you remove out directories to free disk space. They're used to detect, what tasks are already completed.
+Or just run start.sh, if you want to do everything in fully automated mode. Just don't forget to override all queries.
+
+Scripts can be interrupted at any moment and continue from exactly the same stage, except small overhead to refresh current state (2-5 minutes). Just don't remove ISO files from export directory before completing build process. Especially if you remove out directories to free disk space. They're used to detect, what tasks are already completed. But if something gets broken - just remove .git file from corresponding directory, remove broken file is neccessary and then resync.
 
 Known issues:
 1) Android 10 still can't be built due to source code problems. I don't want to take responsibilty and fix them.
