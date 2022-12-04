@@ -32,7 +32,7 @@ do
 	check_backup .repo/manifests/$branch_manifest.xml
 	
 	#Add OpenGApps to manifest
-	if [ $opengapps != "no" ]
+	if [ "$opengapps" != "no" ]
 	then
 		cp ../opengapps.xml .repo/manifests/
 		sed -i 's#</manifest>#\n  <include name="opengapps.xml" />\n\n#g' .repo/manifests/$branch_manifest.xml
@@ -47,7 +47,7 @@ do
 		python3 repo sync --no-tags --no-clone-bundle
 		
 		#Ask, if sync completed successfully
-		if [ $override_sync = "yes" ]
+		if [ "$override_sync" = "yes" ]
 		then
 			break
 		fi
@@ -68,18 +68,22 @@ do
 	check_backup device/generic/common/device.mk
 	
 	#Warning: removing opengapps - is only way to disable it. You would need to download it again!
-	if [ $opengapps != "no" ]
+	if [ "$opengapps" != "no" ]
 	then		
 		#Install OpenGApps to device.mk
-		if [ $override_webview = "yes" ]
+		if [ "$override_webview" = "yes" ]
 		then
 			sed -i "1s/^/GAPPS_FORCE_WEBVIEW_OVERRIDES := true\n/" device/generic/common/device.mk				
 		fi 
-		if [ $override_browser = "yes" ]
+		if [ "$override_browser" = "yes" ]
 		then
 			sed -i "1s/^/GAPPS_FORCE_BROWSER_OVERRIDES := true\n/" device/generic/common/device.mk				
 		fi 
-		if [ $packages != "no" ]
+		if [ "$override_packages" != "no" ]
+		then
+			sed -i "1s/^/GAPPS_PACKAGE_OVERRIDES += $override_packages\n/" device/generic/common/device.mk
+		fi
+		if [ "$packages" != "no" ]
 		then
 			sed -i "1s/^/GAPPS_PRODUCT_PACKAGES += $packages\n/" device/generic/common/device.mk
 		fi
@@ -108,7 +112,7 @@ do
 			python3 repo forall -c git lfs pull
 			
 			#Ask, if download completed successfully
-			if [ $override_sync = "yes" ]
+			if [ "$override_sync" = "yes" ]
 			then
 				break
 			fi

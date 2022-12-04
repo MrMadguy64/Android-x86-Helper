@@ -19,7 +19,9 @@ cpus="4"
 #OpenGApps variant: "no" to disable, otherwise - value for GAPPS_VARIANT
 opengapps="pico"
 #OpenGApps packages: "no" to disable, otherwise - value for GAPPS_PRODUCT_PACKAGES
-packages="no"
+packages="Chrome WebViewGoogle PrebuiltGmail Velvet"
+#OpenGApps overrides: "no" to disable, otherwise - values for GAPPS_PACKAGE_OVERRIDES 
+override_packages=$packages
 #OpenGApps browser: "no" to disable, "yes" to set GAPPS_FORCE_BROWSER_OVERRIDES := true
 override_browser="yes"
 #OpenGApps WebView: "no" to disable, "yes" to set GAPPS_FORCE_WEBVIEW_OVERRIDES := true
@@ -27,11 +29,11 @@ override_webview="yes"
 #Make call style: "old" for using buildspec.mk, "new" for using lunch
 make_style="new"
 #Override OUT_DIR variable: "no" to disable, anything else to enable (relative paths are allowed)
-out_directory="no"
+out_directory="../../Android"
 #Use common base: "no" for setting OUT_DIR, "yes" for setting OUT_DIR_COMMON_BASE
-use_common_base="no"
+use_common_base="yes"
 #Disable sandbox: "no" to use default sandbox settings, "yes" in case of problems with nsjail
-disable_sandbox="no"
+disable_sandbox="yes"
 
 #***System settings***
 

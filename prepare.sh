@@ -3,7 +3,7 @@
 . ./config.sh
 
 #Make swap file
-if [ $swap = "yes" ]
+if [ "$swap" = "yes" ]
 then
 	#Don't remake, if it already exists
 	if ! [ -f swapfile ]

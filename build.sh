@@ -25,13 +25,13 @@ do
 	cd android_$branch_name
 	
 	#Set these variables here, othervise clean_branch wouldn't work
-	if [ $out_directory != "no" ]
+	if [ "$out_directory" != "no" ]
 	then
 		mkdir -p $out_directory
 		real_out="$(realpath $out_directory)"
 		real_suffix="android_$branch_name"
 		full_out="$real_out/$real_suffix"
-		if [ $use_common_base = "yes" ]
+		if [ "$use_common_base" = "yes" ]
 		then
 			export OUT_DIR_COMMON_BASE=$real_out
 		else
@@ -69,7 +69,7 @@ do
 					echo TARGET_BUILD_TYPE := $build >> buildspec.mk
 					echo TARGET_KERNEL_CONFIG := android-${arch_vers}_${kernel} >> buildspec.mk
 					#Disable sandboxing in case of problems with nsjail
-					if [ $disable_sandbox = "yes" ]
+					if [ "$disable_sandbox" = "yes" ]
 					then
 						sed -i 's#if !c.Sandbox.Enabled {#return false\n\tif true {#g' build/soong/ui/build/sandbox_linux.go
 					fi
@@ -90,7 +90,7 @@ do
 					. build/envsetup.sh
 					export TARGET_KERNEL_CONFIG=android-${arch_vers}_${kernel}
 					#Disable sandboxing in case of problems with nsjail
-					if [ $disable_sandbox = "yes" ]
+					if [ "$disable_sandbox" = "yes" ]
 					then
 						sed -i 's#if !c.Sandbox.Enabled {#return false\n\tif true {#g' build/soong/ui/build/sandbox_linux.go
 					fi
