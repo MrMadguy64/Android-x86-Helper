@@ -21,10 +21,13 @@ Instruction:
 5) Run sync.sh (1-2 hours per branch)
 6) Run build.sh (several hours per target)
 
-Or just run start.sh, if you want to do everything in fully automated mode. Just don't forget to override all queries.
+Or just run start.sh, if you want to do everything in fully automated mode. Just don't forget to override all queries. Another script - startnosync.sh is provided for case, when you want to run in fully automated mode, but don't want to waste time on resyncing things.
 
 Scripts can be interrupted at any moment and continue from exactly the same stage, except small overhead to refresh current state (2-5 minutes). Just don't remove ISO files from export directory before completing build process. Especially if you remove out directories to free disk space. They're used to detect, what tasks are already completed. But if something gets broken - just remove .git from corresponding directory, remove broken files if neccessary and then resync.
 
 Known issues:
 1) Android 10 still can't be built due to source code problems. I don't want to take responsibilty and fix them.
-2) Some cases aren't tested, like removing out dir
+2) SetupWizard crashes in Android 11, but you can skip it via boot menu or via SETUPWIZARD=0 kernel command line parameter
+3) Navigation bar is broken for some non-standard resolutions, like 1280x1024
+4) Virtio GPU drivers aren't enabled in kernel, so emulation is slow
+5) Some cases aren't tested, like removing out dir
