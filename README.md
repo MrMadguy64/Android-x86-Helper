@@ -27,7 +27,8 @@ Scripts can be interrupted at any moment and continue from exactly the same stag
 
 Known issues:
 1) Android 10 still can't be built due to source code problems. I don't want to take responsibilty and fix them.
-2) SetupWizard crashes in Android 11, but you can skip it via boot menu or via SETUPWIZARD=0 kernel command line parameter
-3) Navigation bar is broken for some non-standard resolutions, like 1280x1024
-4) Virtio GPU drivers aren't enabled in kernel, so emulation is slow
-5) Some cases aren't tested, like removing out dir
+2) SetupWizard crashes on Android 11, but you can skip it via boot menu or via SETUPWIZARD=0 kernel command line parameter
+3) Cursor is blinking in graphic mode on Android 11
+4) Navigation bar is broken for some non-standard resolutions, like 1280x1024
+5) Virtio GPU drivers aren't enabled in kernel, so emulation is slow
+6) Some cases aren't tested, like removing out dir
