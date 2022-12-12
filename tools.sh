@@ -15,7 +15,28 @@ check_backup() {
 	then
 		cp -f $backup_file $1
 	else
-		cp -f $1 $backup_file
+		if [ -f $1 ]
+		then
+			cp -f $1 $backup_file
+		fi
+	fi
+}
+
+#Restore backup and remove backup file 
+#$1 - file name (required)
+restore_backup() {
+	#File name is required
+	if [ $# -ne 1 ]
+	then
+		return
+	fi
+	#Cache backup file name
+	local backup_file="$1.bak"
+	#Backup file exists
+	if [ -f $backup_file ]
+	then
+		cp -f $backup_file $1
+		rm -f $backup_file
 	fi
 }
 

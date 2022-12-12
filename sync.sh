@@ -3,6 +3,21 @@
 . ./config.sh
 . ./tools.sh
 
+#Prepare shared OpenGApps folder
+if [ "$opengapps" != "no" ]
+then
+	if ! [ -d common ]
+	then
+		mkdir -p common
+	fi
+else
+	#Warning: OpenGApps files are large! Downloading them again will take time!
+	if [ -d common ]
+	then
+		rm -rf common
+	fi
+fi
+
 for branch in $branches
 do
 	temp=${branch%=*}
@@ -28,7 +43,7 @@ do
 		cd $folder
 	fi
 	
-	#Backup manifest
+	#Backup manifest - can't restore this backup, cuz it's required for resync
 	check_backup .repo/manifests/$branch_manifest.xml
 	
 	#Add OpenGApps to manifest
@@ -37,9 +52,18 @@ do
 		cp ../opengapps.xml .repo/manifests/
 		sed -i 's#</manifest>#\n  <include name="opengapps.xml" />\n\n#g' .repo/manifests/$branch_manifest.xml
 		echo '</manifest>' >> .repo/manifests/$branch_manifest.xml
+		ln -sfn $(realpath ../common) vendor
 	else
 		rm -f .repo/manifests/opengapps.xml
+		rm -f vendor
 	fi
+	
+	#Restore all backups before resyncing - these files can be updated during resync
+	restore_backup device/generic/common/device.mk
+	restore_backup vendor/opengapps/build/opengapps-packages.mk
+	restore_backup build/soong/ui/build/sandbox_linux.go
+	restore_backup build/soong/ui/build/paths/config.go
+	restore_backup device/generic/common/build/tasks/kernel.mk
 	
 	#Sync main repo
 	while true
@@ -63,11 +87,11 @@ do
 			;;
 		esac
 	done
-	
+
 	#Backup device.mk
 	check_backup device/generic/common/device.mk
 	
-	#Warning: removing opengapps - is only way to disable it. You would need to download it again!
+	#Configure OpenGApps, if it's enabled
 	if [ "$opengapps" != "no" ]
 	then		
 		#Install OpenGApps to device.mk
@@ -109,7 +133,13 @@ do
 		#Download OpenGApps files via lfs
 		while true
 		do
-			python3 repo forall -c git lfs pull
+			for dir in all x86 x86_64
+			do
+				temp=$PWD
+				cd vendor/opengapps/sources/$dir
+				git lfs pull
+				cd $temp
+			done
 			
 			#Ask, if download completed successfully
 			if [ "$override_sync" = "yes" ]
@@ -128,12 +158,8 @@ do
 				;;
 			esac
 		done
-	else
-		#Warning: OpenGApps files are large! Downloading them again will take time!
-		cd vendor
-		rm -rf opengapps
-		cd ..
 	fi
 		
 	cd ..
 done
+
