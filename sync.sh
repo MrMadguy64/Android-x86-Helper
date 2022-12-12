@@ -3,21 +3,6 @@
 . ./config.sh
 . ./tools.sh
 
-#Prepare shared OpenGApps folder
-if [ "$opengapps" != "no" ]
-then
-	if ! [ -d common ]
-	then
-		mkdir -p common
-	fi
-else
-	#Warning: OpenGApps files are large! Downloading them again will take time!
-	if [ -d common ]
-	then
-		rm -rf common
-	fi
-fi
-
 for branch in $branches
 do
 	temp=${branch%=*}
@@ -52,10 +37,8 @@ do
 		cp ../opengapps.xml .repo/manifests/
 		sed -i 's#</manifest>#\n  <include name="opengapps.xml" />\n\n#g' .repo/manifests/$branch_manifest.xml
 		echo '</manifest>' >> .repo/manifests/$branch_manifest.xml
-		ln -sfn $(realpath ../common) vendor
 	else
 		rm -f .repo/manifests/opengapps.xml
-		rm -f vendor
 	fi
 	
 	#Restore all backups before resyncing - these files can be updated during resync
@@ -158,6 +141,9 @@ do
 				;;
 			esac
 		done
+	else
+		#Warning: OpenGApps files are large! Downloading them again will take time!
+		rm -rf vendor
 	fi
 		
 	cd ..
