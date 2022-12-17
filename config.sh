@@ -5,7 +5,7 @@
 #Manifest URL
 source="git://git.osdn.net/gitroot/android-x86/manifest"
 #Space separated list of items with following format "BRANCH=MANIFEST=VERSION"
-branches="pie-x86=android-x86-9.0-r2=9.0 q-x86=default=10.0 r-x86=default=11.0"
+branches="oreo-x86=android-x86-8.1-r6=8.1 pie-x86=android-x86-9.0-r2=9.0 q-x86=default=10.0 r-x86=default=11.0"
 #Space separated list of items with following format "TARGET_PRODUCT=ARCH"
 arches="android_x86=x86 android_x86_64=x86_64"
 #Value for TARGET_BUILD_VARIANT
