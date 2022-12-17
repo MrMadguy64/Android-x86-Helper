@@ -26,7 +26,7 @@ Or just run start.sh, if you want to do everything in fully automated mode. Just
 Scripts can be interrupted at any moment and continue from exactly the same stage, except small overhead to refresh current state (2-5 minutes). Just don't remove ISO files from export directory before completing build process. Especially if you remove out directories to free disk space. They're used to detect, what tasks are already completed. But if something gets broken - just remove .git from corresponding directory, remove broken files if neccessary and then resync.
 
 Known issues:
-1) Android 10 still can't be built due to source code problems. I don't want to take responsibilty and fix them.
+1) Android 10 requires source code fixing
 2) SetupWizard crashes on Android 11, but you can skip it via boot menu or via SETUPWIZARD=0 kernel command line parameter
 3) Cursor is blinking in graphic mode on Android 11
 4) Navigation bar is broken for some non-standard resolutions, like 1280x1024
