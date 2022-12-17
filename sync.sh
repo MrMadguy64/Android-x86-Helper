@@ -41,6 +41,9 @@ do
 		rm -f .repo/manifests/opengapps.xml
 	fi
 	
+	#Path for Android 10 to fix lack of gcc 4.6
+	sed -i 's#x86_64-linux-glibc2.11-4.6" revision="master"#x86_64-linux-glibc2.11-4.6" revision="eb5c9f0ae36bf964f6855bde54e1b387e2c26bb6"#g' .repo/manifests/$branch_manifest.xml
+	
 	#Restore all backups before resyncing - these files can be updated during resync
 	restore_backup device/generic/common/device.mk
 	restore_backup vendor/opengapps/build/opengapps-packages.mk
