@@ -56,8 +56,8 @@ do
 		then        		
 			#Backup sandbox_linux.go
 			check_backup build/soong/ui/build/sandbox_linux.go
-			#Backup config.go
-			check_backup build/soong/ui/build/paths/config.go
+			#Backup drmhwctwo.cpp
+			check_backup external/drm_hwcomposer/drmhwctwo.cpp
 			#Backup kernel.mk
 			check_backup device/generic/common/build/tasks/kernel.mk
 			#Choose make style
@@ -74,7 +74,9 @@ do
 						sed -i 's#if !c.Sandbox.Enabled {#return false\n\tif true {#g' build/soong/ui/build/sandbox_linux.go
 					fi
 					#Kernel: depmod patch for Android 10 kernel
-					sed -i 's#"dd":       Allowed,#"dd":       Allowed,\n\t"depmod"    :Allowed,#g' build/soong/ui/build/paths/config.go
+					export TEMPORARY_DISABLE_PATH_RESTRICTIONS=true
+					#drm_hwcomposer: patch to fix case fall through
+					sed -i 's#\/\* fall through \*\/#[[fallthrough]];#g' external/drm_hwcomposer/drmhwctwo.cpp					
 					#Kernel: bison/ld patch in case of using OUT_DIR or OUT_DIR_COMMON_BASE					
 					sed -i 's#ln -sf ../../../../../../prebuilts#ln -sf $(abspath ./prebuilts)#g' device/generic/common/build/tasks/kernel.mk
 					sed -i 's#ln -sf ../../$(LLVM_PREBUILTS_PATH)/llvm-ar#ln -sf $(abspath ./$(LLVM_PREBUILTS_PATH)/llvm-ar)#g' device/generic/common/build/tasks/kernel.mk
@@ -97,7 +99,9 @@ do
 					#Configure build environment
 					lunch $arch_name-$target
 					#Kernel: depmod patch for Android 10 kernel
-					sed -i 's#"dd":       Allowed,#"dd":       Allowed,\n\t"depmod"    :Allowed,#g' build/soong/ui/build/paths/config.go
+					export TEMPORARY_DISABLE_PATH_RESTRICTIONS=true
+					#drm_hwcomposer: patch to fix case fall through
+					sed -i 's#\/\* fall through \*\/#[[fallthrough]];#g' external/drm_hwcomposer/drmhwctwo.cpp	
 					#Kernel: bison/ld patch in case of using OUT_DIR or OUT_DIR_COMMON_BASE	
 					sed -i 's#ln -sf ../../../../../../prebuilts#ln -sf $(abspath ./prebuilts)#g' device/generic/common/build/tasks/kernel.mk
 					sed -i 's#ln -sf ../../$(LLVM_PREBUILTS_PATH)/llvm-ar#ln -sf $(abspath ./$(LLVM_PREBUILTS_PATH)/llvm-ar)#g' device/generic/common/build/tasks/kernel.mk

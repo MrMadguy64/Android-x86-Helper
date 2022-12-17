@@ -45,7 +45,7 @@ do
 	restore_backup device/generic/common/device.mk
 	restore_backup vendor/opengapps/build/opengapps-packages.mk
 	restore_backup build/soong/ui/build/sandbox_linux.go
-	restore_backup build/soong/ui/build/paths/config.go
+	restore_backup check_backup external/drm_hwcomposer/drmhwctwo.cpp
 	restore_backup device/generic/common/build/tasks/kernel.mk
 	
 	#Sync main repo
