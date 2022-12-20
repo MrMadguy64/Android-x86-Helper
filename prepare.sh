@@ -1,6 +1,7 @@
 #!/bin/bash
 
 . ./config.sh
+. ./tools.sh
 
 #Make swap file
 if [ "$swap" = "yes" ]
@@ -51,3 +52,9 @@ lib32z1-dev libgl1-mesa-dev libxml2-utils xsltproc unzip fontconfig \
 git git-lfs gcc make libxml2-utils flex m4 \
 openjdk-8-jdk lib32stdc++6 libelf-dev mtools \
 libssl-dev python-enum34 python-mako syslinux-utils
+
+#Backup java.security
+check_backup /etc/java-8-openjdk/security/java.security
+
+#Patch for Android 8.1 to fix TLS problems in Jack server
+sed -i 's/TLSv1, TLSv1.1, //g' /etc/java-8-openjdk/security/java.security

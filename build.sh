@@ -79,6 +79,7 @@ do
 					sed -i 's#\/\* fall through \*\/#[[fallthrough]];#g' external/drm_hwcomposer/drmhwctwo.cpp					
 					#Kernel: bison/ld patch in case of using OUT_DIR or OUT_DIR_COMMON_BASE					
 					sed -i 's#ln -sf ../../../../../../prebuilts#ln -sf $(abspath ./prebuilts)#g' device/generic/common/build/tasks/kernel.mk
+					sed -i 's#ln -sf ../../../../../../external#ln -sf $(abspath ./external)#g' device/generic/common/build/tasks/kernel.mk
 					sed -i 's#ln -sf ../../$(LLVM_PREBUILTS_PATH)/llvm-ar#ln -sf $(abspath ./$(LLVM_PREBUILTS_PATH)/llvm-ar)#g' device/generic/common/build/tasks/kernel.mk
 					sed -i 's#ln -sf ../../$(LLVM_PREBUILTS_PATH)/ld.lld#ln -sf $(abspath ./$(LLVM_PREBUILTS_PATH)/ld.lld)#g' device/generic/common/build/tasks/kernel.mk
 					sed -i 's#ln -sf ../../$(dir $(TARGET_TOOLS_PREFIX))x86_64-linux-androidkernel-*#ln -sf $(abspath ./$(dir $(TARGET_TOOLS_PREFIX))x86_64-linux-androidkernel-*)#g' device/generic/common/build/tasks/kernel.mk
@@ -104,6 +105,7 @@ do
 					sed -i 's#\/\* fall through \*\/#[[fallthrough]];#g' external/drm_hwcomposer/drmhwctwo.cpp	
 					#Kernel: bison/ld patch in case of using OUT_DIR or OUT_DIR_COMMON_BASE	
 					sed -i 's#ln -sf ../../../../../../prebuilts#ln -sf $(abspath ./prebuilts)#g' device/generic/common/build/tasks/kernel.mk
+					sed -i 's#ln -sf ../../../../../../external#ln -sf $(abspath ./external)#g' device/generic/common/build/tasks/kernel.mk
 					sed -i 's#ln -sf ../../$(LLVM_PREBUILTS_PATH)/llvm-ar#ln -sf $(abspath ./$(LLVM_PREBUILTS_PATH)/llvm-ar)#g' device/generic/common/build/tasks/kernel.mk
 					sed -i 's#ln -sf ../../$(LLVM_PREBUILTS_PATH)/ld.lld#ln -sf $(abspath ./$(LLVM_PREBUILTS_PATH)/ld.lld)#g' device/generic/common/build/tasks/kernel.mk
 					sed -i 's#ln -sf ../../$(dir $(TARGET_TOOLS_PREFIX))x86_64-linux-androidkernel-*#ln -sf $(abspath ./$(dir $(TARGET_TOOLS_PREFIX))x86_64-linux-androidkernel-*)#g' device/generic/common/build/tasks/kernel.mk
