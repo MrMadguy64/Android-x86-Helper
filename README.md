@@ -12,8 +12,9 @@ Scripts aim at building on virtual machine or live session. Builing on real syst
 Recommendations:
 1) Ubuntu 18.04 LTS 64bit is recommended Linux version (I personally prefer Mate version)
 2) 8Gb of RAM are enough for building Android 9 and 10
-3) 16Gb are recommended for Android 8.1 and 11
-4) According to tests 14Gb are actually enough, if you use VM, your host has exactly 16Gb and would hang in case of allocating them all 
+3) 16Gb are recommended for Android 8.1 and 11 (8.1 doesn't seem to have memory usage optimization, that 11 has)
+4) According to tests 14Gb are actually enough, if you use VM, your host has exactly 16Gb and would hang in case of allocating them all
+5) Overall common formula is - around 2-3Gb per CPU core used plus 4Gb for OS itself (so 4 cores = 16Gb)
 
 Instruction:
 1) Provide enough space for sources (~100Gb per branch), OpenGApps (~20Gb per branch), building (~100Gb per target, can be on separate drive)
