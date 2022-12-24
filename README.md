@@ -21,8 +21,8 @@ Instruction:
 2) Put scripts to your source directory
 3) Edit config.sh
 4) Run prepare.sh (1-2 minutes)
-5) Run sync.sh (1-2 hours per branch)
-6) Run build.sh (several hours per target)
+5) Run sync.sh (1-2 hours per branch, depending on your ISP's throughput)
+6) Run build.sh (several hours per target, depending on number of CPU cores used and disk's throughput)
 
 Or just run start.sh, if you want to do everything in fully automated mode. Just don't forget to override all queries. Another script - startnosync.sh is provided for case, when you want to run in fully automated mode, but don't want to waste time on resyncing things. Use finish.sh to restore all backups.
 
