@@ -17,7 +17,7 @@ Recommendations:
 5) Overall common formula is - around 2-3Gb per CPU core used plus 4Gb for OS itself (so 4 cores = 16Gb)
 
 Instruction:
-1) Provide enough space for sources (~100Gb per branch), OpenGApps (~20Gb per branch), building (~100Gb per target, can be on separate drive)
+1) Provide enough space for sources (~100Gb per branch), OpenGApps (~20Gb per branch) and building (~100Gb per target, can be on separate drive)
 2) Put scripts to your source directory
 3) Edit config.sh
 4) Run prepare.sh (1-2 minutes)
