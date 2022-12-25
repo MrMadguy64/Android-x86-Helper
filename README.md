@@ -35,3 +35,4 @@ Known issues:
 4) Navigation bar is broken for some non-standard resolutions, like 1280x1024
 5) Virtio GPU drivers aren't enabled in kernel, so emulation is slow
 6) Some cases aren't tested, like removing out dir
+7) Android 8.0 and earlier versions aren't tested
