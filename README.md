@@ -32,8 +32,10 @@ Known issues:
 1) Android 10 requires source code fixing
 2) SetupWizard crashes on Android 11, but you can skip it via boot menu or via SETUPWIZARD=0 kernel command line parameter
 3) Cursor is blinking in graphic mode on Android 11, can be fixed via vt.global_cursor_default=0 kernel command line parameter
-4) There are some problems with making installed version of Android-x86 work. But you can actually use live version of Android-x86 + persistent storage instead. Just specify path to it via DATA=<path> kernel command line parameter.
-5) Navigation bar is broken for some non-standard resolutions, like 1280x1024
-6) Virtio GPU drivers aren't enabled in kernel, so emulation is slow
-7) Some cases aren't tested, like removing out dir
-8) Android 8.0 and earlier versions aren't tested
+4) If Android logo doesn't appear - try adding "nomodeset vga=ask" parameters
+5) You can use live version of Android-x86 + persistent storage. Just specify path to it via "DATA=<path>" kernel command line parameter.
+6) You can add SD card via "SDCARD=<path>" kernel command line parameter
+7) Navigation bar is broken for some non-standard resolutions, like 1280x1024
+8) Virtio GPU drivers aren't enabled in kernel, so emulation is slow
+9) Some cases aren't tested, like removing out dir
+10) Android 8.0 and earlier versions aren't tested
