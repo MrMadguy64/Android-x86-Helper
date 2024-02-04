@@ -3,16 +3,6 @@
 . ./config.sh
 . ./tools.sh
 
-#It's separate script, so set this varaibles again
-case $dest_type in
-	"directory")
-		dest_dir=$export_dir
-	;;
-	"network")
-		dest_dir="/mnt/"
-	;;
-esac
-
 #Branch building
 for branch in $branches
 do	
