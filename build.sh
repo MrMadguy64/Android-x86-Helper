@@ -84,7 +84,7 @@ do
 					sed -i 's#ln -sf ../../$(LLVM_PREBUILTS_PATH)/ld.lld#ln -sf $(abspath ./$(LLVM_PREBUILTS_PATH)/ld.lld)#g' device/generic/common/build/tasks/kernel.mk
 					sed -i 's#ln -sf ../../$(dir $(TARGET_TOOLS_PREFIX))x86_64-linux-androidkernel-*#ln -sf $(abspath ./$(dir $(TARGET_TOOLS_PREFIX))x86_64-linux-androidkernel-*)#g' device/generic/common/build/tasks/kernel.mk
 					#Old style make
-					make -j$cpus iso_img
+					make -j$cpus $make_target
 				;;
 				"new")
 					#Remove buildspec.mk, if exists
@@ -110,7 +110,7 @@ do
 					sed -i 's#ln -sf ../../$(LLVM_PREBUILTS_PATH)/ld.lld#ln -sf $(abspath ./$(LLVM_PREBUILTS_PATH)/ld.lld)#g' device/generic/common/build/tasks/kernel.mk
 					sed -i 's#ln -sf ../../$(dir $(TARGET_TOOLS_PREFIX))x86_64-linux-androidkernel-*#ln -sf $(abspath ./$(dir $(TARGET_TOOLS_PREFIX))x86_64-linux-androidkernel-*)#g' device/generic/common/build/tasks/kernel.mk
 					#New style make
-					m -j$cpus iso_img
+					m -j$cpus $make_target
 				;;
 			esac
 			

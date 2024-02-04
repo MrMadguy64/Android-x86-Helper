@@ -14,6 +14,8 @@ target="user"
 build="release"
 #Value for TARGET_KERNEL_CONFIG
 kernel="defconfig"
+#Make build target: "iso_img" for ISO file, "kernel" for kernel
+make_target="iso_img"
 #Number of CPUs for Make
 cpus="4"
 #OpenGApps variant: "no" to disable, otherwise - value for GAPPS_VARIANT
